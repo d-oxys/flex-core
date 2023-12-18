@@ -36,7 +36,7 @@ const RecipeIndexPage = () => {
   }
 
   return (
-    <div className='container m-auto flex min-h-screen flex-col space-y-8 px-4 py-4 lg:px-12 xl:px-24'>
+    <div className='container m-auto flex min-h-screen flex-col space-y-8 px-4 py-4 capitalize lg:px-12 xl:px-24'>
       <div className='pt-6 text-center'>
         <h1 className='text-base font-bold text-[#3056D3]'>Refrensi Resep Untuk Memenuhi Kebutuhan Kalori</h1>
         <h2 className='mb-3 mt-1 text-2xl font-bold md:text-3xl'>Lorem ipsum dolor sit. </h2>
@@ -45,7 +45,7 @@ const RecipeIndexPage = () => {
 
       <div className='grid grid-cols-2 items-center justify-center gap-3 md:grid-cols-3'>
         {categories.map((category, k) => (
-          <Button className={`${category.toLowerCase() === filteredCategory.toLowerCase() ? 'bg-primary-2' : 'bg-primary-1'} hover:bg-primary-2 duration-500`} key={k} onClick={() => filterCategory(category)}>
+          <Button className={`${category.toLowerCase() === filteredCategory.toLowerCase() ? 'bg-primary-2' : 'bg-primary-1'} hover:bg-primary-2 capitalize duration-500`} key={k} onClick={() => filterCategory(category)}>
             {category}
           </Button>
         ))}

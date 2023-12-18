@@ -5,17 +5,7 @@ import Link from 'next/link';
 import { Breadcrumb, Button } from 'flowbite-react';
 import { FaUtensils } from 'react-icons/fa';
 import ArticleLayout from '@/components/ArticleLayout';
-import CustomFooter from '@/components/CustomFooter';
-import CustomNavbar from '@/components/CustomNavbar';
-import 'tailwindcss/tailwind.css';
-import 'react-toastify/dist/ReactToastify.css';
-import { Poppins } from 'next/font/google';
-
-const poppins = Poppins({
-  weight: ['300', '400', '500', '600', '700', '800'],
-  subsets: ['latin'],
-  variable: '--font-poppins',
-});
+import Layout from '@/components/rootLayout';
 
 const RecipeDetailPage = () => {
   type recipeType = typeof recipeJson[0];
@@ -56,8 +46,7 @@ const RecipeDetailPage = () => {
   }, [recipe]);
 
   return (
-    <div className={poppins.className}>
-      <CustomNavbar />
+    <Layout>
       <div className='px-6 py-4 lg:px-24 xl:px-36'>
         {isLoading ? (
           <div>
@@ -82,8 +71,8 @@ const RecipeDetailPage = () => {
                   </Breadcrumb.Item>
 
                   <Breadcrumb.Item>
-                    <Link href={`/resep?umur=${recipe.Kategori}`} className='flex items-center gap-x-2 text-black'>
-                      {recipe.Kategori} {recipe.Kategori != 'Semua' ? 'bulan' : 'usia'} {recipe.Kategori == '12' && 'ke atas'}
+                    <Link href={`/resep?Kategori=${recipe.Kategori}`} className='flex items-center gap-x-2 text-black'>
+                      {recipe.Kategori}
                     </Link>
                   </Breadcrumb.Item>
 
@@ -165,8 +154,7 @@ const RecipeDetailPage = () => {
           </div>
         )}
       </div>
-      <CustomFooter />
-    </div>
+    </Layout>
   );
 };
 

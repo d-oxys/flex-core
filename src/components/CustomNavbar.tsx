@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from '@nextui-org/react';
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from '@nextui-org/react';
+import Link from 'next/link';
 import { AcmeLogo } from './logo.jsx';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -72,7 +73,14 @@ export default function App() {
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`} className='capitalize'>
-            <Link color={pathname === `/${item}` ? undefined : index === menuItems.length - 1 ? 'danger' : 'foreground'} className='w-full' href={`/${item}`} size='lg' aria-current={pathname === `/${item}` ? 'page' : undefined}>
+            <Link
+              href={`/${item}`}
+              className={`
+          w-full 
+          lg:text-lg 
+          ${pathname === `/${item}` ? 'text-current' : index === menuItems.length - 1 ? 'text-red-600' : 'text-gray-800'}
+        `}
+            >
               {item}
             </Link>
           </NavbarMenuItem>

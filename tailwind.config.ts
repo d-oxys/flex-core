@@ -11,8 +11,7 @@ const config: Config = {
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
-        sans: ['var(--font-poppins)', ...defaultTheme.fontFamily.sans],
-        suisseNeue: ['var(--font-suisse-neue)'],
+        poppins: ['var(--font-poppins)'],
       },
       colors: {
         'primary-1': '#2AA8FF',

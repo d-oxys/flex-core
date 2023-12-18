@@ -1,27 +1,15 @@
-import CustomFooter from '@/components/CustomFooter';
-import CustomNavbar from '@/components/CustomNavbar';
+import Layout from '@/components/rootLayout';
 import LandingPage from '@/components/landingPage';
-import { Poppins } from 'next/font/google';
 import React from 'react';
-import 'tailwindcss/tailwind.css';
-import 'react-toastify/dist/ReactToastify.css';
 
-const poppins = Poppins({
-  weight: ['300', '400', '500', '600', '700', '800'],
-  subsets: ['latin'],
-  variable: '--font-poppins',
-});
-
-const Perhitungan = () => {
+const Home = () => {
   return (
-    <div className={poppins.className}>
-      <CustomNavbar />
+    <Layout>
       <div className='bg-white'>
         <LandingPage />
       </div>
-      <CustomFooter />
-    </div>
+    </Layout>
   );
 };
 
-export default Perhitungan;
+export default Home;
