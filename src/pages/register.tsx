@@ -22,6 +22,8 @@ const RegisterComponent: React.FC = () => {
 
     if (data.status === 'ok') {
       alert(data.message);
+    } else if (data.status === 'alreadyRegistered') {
+      alert(data.message);
     } else {
       alert('Registration failed');
     }

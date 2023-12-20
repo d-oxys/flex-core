@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       if (docSnap.exists()) {
         // Jika email sudah terdaftar, kirim pesan error
         res.status(400).json({
-          status: 'error',
+          status: 'alreadyRegistered',
           message: 'Email already registered',
         });
       } else {
@@ -34,6 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           name: name,
           email: email,
           password: hashedPassword, // Simpan password yang sudah dienkripsi
+          role: 'user', // Tambahkan role sebagai 'user'
         });
 
         res.status(200).json({
