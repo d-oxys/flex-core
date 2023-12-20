@@ -21,7 +21,7 @@ Teknologi yang digunakan :
 
 #### User Register
 
-- URL : /register
+- URL : /api/register
 - Method : POST
 - Request Body:
   - name as string
@@ -40,7 +40,7 @@ Teknologi yang digunakan :
 
 #### User Login
 
-- URL : /login
+- URL : /api/login
 - Method : POST
 - Request Body:
   - email as string
