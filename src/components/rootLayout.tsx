@@ -1,3 +1,4 @@
+'use client';
 import CustomFooter from '@/components/CustomFooter';
 import CustomNavbar from '@/components/CustomNavbar';
 import React from 'react';
