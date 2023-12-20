@@ -36,4 +36,51 @@ Teknologi yang digunakan :
 }
 ```
 
-#
+### Login
+
+#### User Login
+
+- URL : /login
+- Method : POST
+- Request Body:
+  - email as string
+  - password as string
+- Response:
+
+```json
+{
+  "status": "ok",
+  "message": "logged in successfully",
+  "user": {
+    "name": "Your Name",
+    "email": "your.email@example.com",
+    "role": "role"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImVtYWlsIjoiam9obmRvZUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImN1c3RvbWVyX2lkIjozLCJpYXQiOjE3MDA2MzQxNDR9.sgoDeu8lNRm_SfoXbb7MkpMEn4ghG0g4Le0GFyN2bn8"
+}
+```
+
+### WorkoutPlan
+
+#### Menambahkan WorkoutPlan
+
+- URL : /api/workout
+- Method : POST
+- Request Body:
+  - nama as string
+  - fotoWO as string
+  - Waktu Latihan as string
+  - Kategori as string
+  - funFacts as string
+  - energi Yang digunakan as array of string
+  - alat as array of string
+  - tutorial as array of string
+- Response:
+
+```json
+{
+  "status": "ok",
+  "message": "Workout plan submitted successfully!",
+  "reportId": "123456"
+}
+```
