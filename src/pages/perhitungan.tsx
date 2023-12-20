@@ -4,9 +4,7 @@ import PerhitunganComp from '@/components/PerhitunganComponent';
 const Perhitungan = () => {
   return (
     <Layout>
-      <div className='bg-white'>
-        <PerhitunganComp />
-      </div>
+      <PerhitunganComp />
     </Layout>
   );
 };
