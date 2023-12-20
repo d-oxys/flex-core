@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '@/components/rootLayout';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 interface User {
   email: string;
@@ -25,9 +26,9 @@ const LoginComponent: React.FC = () => {
     if (data.status === 'ok') {
       alert(data.message);
 
-      // Simpan token dan detail pengguna di localStorage
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
+      // Simpan token dan detail pengguna di cookies
+      Cookies.set('token', data.token);
+      Cookies.set('user', JSON.stringify(data.user));
 
       // Navigasi ke halaman utama
       router.push('/');
