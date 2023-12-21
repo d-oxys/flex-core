@@ -85,7 +85,7 @@ Teknologi yang digunakan :
 }
 ```
 
-#### Get All Report
+#### Get All Report (params: Kategori)
 
 - URL : /api/workout
 - Method : GET
@@ -93,7 +93,7 @@ Teknologi yang digunakan :
   - q = search
   - l =limit
   - skip = skip
-  - example : /workout?q=banjir&limit=20
+  - example : /workout?q=lengan&limit=20
 - Response:
 
 ```json
