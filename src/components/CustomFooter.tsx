@@ -55,7 +55,7 @@ const CustomFooter = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/psg' className='hover:text-primary-2 duration-500'>
+                    <Link href='/perhitungan' className='hover:text-primary-2 duration-500'>
                       Perhitungan
                     </Link>
                   </li>

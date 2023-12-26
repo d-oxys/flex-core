@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { collection, doc, setDoc, getDoc } from 'firebase/firestore';
-import { db } from '../../lib/firebaseAdmin';
+import { db } from '../../../lib/firebaseAdmin';
 import bcrypt from 'bcrypt';
 
 type Data = {

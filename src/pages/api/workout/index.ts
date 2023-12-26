@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { collection, addDoc, getDocs, query, where, limit, startAfter, orderBy, Query } from 'firebase/firestore';
-import { db } from '../../lib/firebaseAdmin';
+import { db } from '../../../lib/firebaseAdmin';
 
 type Data = {
   status: string;
@@ -54,7 +54,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const workoutPlans: any[] = [];
       const querySnapshot = await getDocs(workoutPlansQuery);
       querySnapshot.forEach((doc) => {
-        workoutPlans.push(doc.data());
+        // Menambahkan id ke data latihan
+        const workoutPlan = doc.data();
+        workoutPlan.id = doc.id;
+        workoutPlans.push(workoutPlan);
       });
 
       res.status(200).json({

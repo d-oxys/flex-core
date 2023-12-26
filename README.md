@@ -119,3 +119,35 @@ Teknologi yang digunakan :
   ]
 }
 ```
+
+#### Detail Report
+
+- URL : /workout/id
+- Method : GET
+  Request Header:
+  - Authorization : 'Bearer {token}'
+- Response:
+
+```json
+{
+  "status": "ok",
+  "message": "Workout plans fetched successfully!",
+  "workoutPlans": [
+    {
+      "funFacts": "Push up adalah latihan yang sangat efektif untuk membangun kekuatan otot bagian atas tubuh.",
+      "Waktu Latihan": "15-30 menit",
+      "tutorial": [
+        "Mulailah dengan posisi plank, dengan tangan sedikit lebih lebar dari bahu.",
+        "Turunkan tubuh Anda sampai dada hampir menyentuh lantai.",
+        "Jaga punggung dan kaki tetap lurus.",
+        "Dorong tubuh Anda kembali ke posisi awal."
+      ],
+      "nama": "Push Up",
+      "energi Yang digunakan": ["200 kkal energi", "25 gram karbohidrat", "8 gram lemak", "7 gram protein"],
+      "alat": ["Matras olahraga"],
+      "fotoWO": "https://via.placeholder.com/400",
+      "Kategori": "dada dan lengan"
+    }
+  ]
+}
+```
