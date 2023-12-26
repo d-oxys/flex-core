@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Layout from '@/components/rootLayout';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
+import ReactLoading from 'react-loading';
 
 interface User {
   email: string;
@@ -10,9 +11,11 @@ interface User {
 
 const LoginComponent: React.FC = () => {
   const [user, setUser] = useState<User>({ email: '', password: '' });
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const login = async () => {
+    setIsLoading(true);
     const response = await fetch('/api/login', {
       method: 'POST',
       headers: {
@@ -35,15 +38,22 @@ const LoginComponent: React.FC = () => {
     } else {
       alert('Login failed');
     }
+    setIsLoading(false);
   };
 
   return (
     <Layout>
-      <div>
-        <input type='email' value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} placeholder='Email' />
-        <input type='password' value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} placeholder='Password' />
-        <button onClick={login}>Login</button>
-      </div>
+      {isLoading ? (
+        <ReactLoading type={'spin'} color={'#000000'} />
+      ) : (
+        <div>
+          <input type='email' value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} placeholder='Email' />
+          <input type='password' value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} placeholder='Password' />
+          <button onClick={login} disabled={isLoading}>
+            Login
+          </button>
+        </div>
+      )}
     </Layout>
   );
 };

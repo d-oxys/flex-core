@@ -1,5 +1,7 @@
 import { Inter, Poppins } from 'next/font/google';
 import { Providers } from './providers';
+import { Provider } from 'react-redux';
+import { store } from '@/lib/store';
 import './globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 
