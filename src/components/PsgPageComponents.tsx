@@ -33,8 +33,8 @@ export const NutritionBox = (props: NutritionBoxData) => {
 
 export const PerDayNutritionBox = (props: PerDayNutritionBoxData) => {
   return (
-    <div className='space-y-7 border-b p-6'>
-      <h2 className='text-xl font-bold'>Makan {props.time}</h2>
+    <div className='space-y-7 border-b p-6 capitalize'>
+      <h2 className='text-xl font-bold'>Porsi {props.time}</h2>
 
       <div className='grid grid-cols-2 gap-y-4 text-center lg:grid-cols-4'>
         <div className=''>

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchWorkouts } from '@/lib/workoutSlice';
 import { RootState, AppDispatch } from '@/lib/store';
 import { setSearch, setLimit, setSkip } from '@/lib/searchSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type WorkoutPlan = {
   nama: string;
@@ -56,20 +58,21 @@ const AddWorkOut: React.FC<AddWorkOutProps> = ({ setIsModalOpen }) => {
         throw new Error(data.message);
       }
       console.log(data);
-      alert(data.message); // Menggunakan pesan dari respons API
+      toast.success(data.message); // Menggunakan pesan dari respons API
       setIsModalOpen(false);
       // Tambahkan baris berikut untuk memperbarui data setelah penambahan berhasil
       dispatch(fetchWorkouts({ search, limit, skip }));
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {
-        alert(error.message); // Menampilkan pesan kesalahan dari API
+        toast.error(error.message); // Menampilkan pesan kesalahan dari API
       }
     }
   };
 
   return (
     <>
+      <ToastContainer />
       <div className='relative rounded-lg bg-white shadow dark:bg-gray-700'>
         {/* <!-- Modal header --> */}
         <div className='flex items-center justify-between rounded-t border-b p-4 dark:border-gray-600 md:p-5'>
