@@ -12,6 +12,8 @@ import { RootState, AppDispatch } from '@/lib/store';
 import ReactLoading from 'react-loading';
 import useDebounce from '@/lib/useDebounce';
 import { setSearch, setLimit, setSkip } from '@/lib/searchSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const GetAllReport: React.FC = () => {
   const workoutPlans = useSelector((state: RootState) => state.workouts);
@@ -28,6 +30,7 @@ const GetAllReport: React.FC = () => {
 
   return (
     <Layout>
+      <ToastContainer />
       <div className='container m-auto flex min-h-screen flex-col space-y-8 px-4 py-4 capitalize lg:px-12 xl:px-24'>
         <div className='pt-6 text-center'>
           <h1 className='text-base font-bold text-[#3056D3]'>Refrensi Resep Untuk Memenuhi Kebutuhan Kalori</h1>
