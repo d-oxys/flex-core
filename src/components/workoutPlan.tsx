@@ -11,6 +11,8 @@ import { fetchWorkouts } from '@/lib/workoutSlice';
 import { RootState, AppDispatch } from '@/lib/store';
 import ReactLoading from 'react-loading';
 import useDebounce from '@/lib/useDebounce';
+import { db } from '@/lib/firebaseAdmin';
+import { collection, getDocs, QueryDocumentSnapshot, DocumentData } from 'firebase/firestore';
 import { setSearch, setLimit, setSkip } from '@/lib/searchSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,12 +24,32 @@ const GetAllReport: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const debouncedSearchTerm = useDebounce(search, 500);
+  const [kategori, setKategori] = useState<string[]>([]);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchKategori = async () => {
+      const workoutCollection = collection(db, 'workouts');
+      const workoutSnapshot = await getDocs(workoutCollection);
+      let kategoriSet: Set<string> = new Set();
+      workoutSnapshot.docs.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
+        const kategoriDoc = doc.data().Kategori;
+        kategoriSet.add(kategoriDoc);
+      });
+      setKategori(Array.from(kategoriSet));
+    };
+
+    fetchKategori();
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
     dispatch(fetchWorkouts({ search, limit, skip })).finally(() => setIsLoading(false));
   }, [debouncedSearchTerm, limit, skip, dispatch]);
 
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
   return (
     <Layout>
       <ToastContainer />
@@ -38,21 +60,67 @@ const GetAllReport: React.FC = () => {
           <p className='mx-auto text-sm text-[#637381] md:w-3/4 md:text-base xl:w-1/2'> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt adipisci beatae eligendi quidem quisquam.</p>
         </div>
         <div>
-          <input type='text' value={search} onChange={(e) => dispatch(setSearch(e.target.value))} placeholder='Search' />
-          <input type='number' value={limit} onChange={(e) => dispatch(setLimit(Number(e.target.value)))} placeholder='Limit' />
-          <input type='number' value={skip} onChange={(e) => dispatch(setSkip(Number(e.target.value)))} placeholder='Skip' />
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className='block rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-            type='button'
-          >
-            Toggle modal
-          </button>
+          <div className='flex items-center justify-between'>
+            <div>
+              <button
+                onClick={toggleDropdown}
+                id='dropdownDefaultButton'
+                data-dropdown-toggle='dropdown'
+                className='inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                type='button'
+              >
+                Pilih Kategori
+                <svg className='ms-3 h-2.5 w-2.5' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 10 6'>
+                  <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m1 1 4 4 4-4' />
+                </svg>
+              </button>
+              <div id='dropdown' className={`inline-flex ${dropdownOpen ? '' : 'hidden'} w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700`}>
+                <ul className='py-2 text-sm text-gray-700 dark:text-gray-200' aria-labelledby='dropdownDefaultButton'>
+                  <li>
+                    <a
+                      onClick={() => {
+                        dispatch(setSearch(''));
+                        toggleDropdown();
+                      }}
+                      href='#'
+                      className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
+                    >
+                      semua
+                    </a>
+                  </li>
+                  {kategori.map((kat, index) => (
+                    <li key={index}>
+                      <a
+                        onClick={() => {
+                          dispatch(setSearch(kat));
+                          toggleDropdown();
+                        }}
+                        href='#'
+                        className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
+                      >
+                        {kat}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <input type='number' value={limit} onChange={(e) => dispatch(setLimit(Number(e.target.value)))} placeholder='Limit' />
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className='block rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+              type='button'
+            >
+              Toggle modal
+            </button>
+          </div>
 
           {/* <!-- Main modal --> */}
           {isModalOpen && (
             <div id='authentication-modal' tabIndex={-1} aria-hidden='true' className='fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black bg-opacity-50'>
-              <div className='relative max-h-[calc(100%-2rem)] w-full max-w-md overflow-auto rounded-md bg-white p-4 shadow-lg'>
+              <div className='relative max-h-[calc(100%-2rem)] w-full max-w-md overflow-auto rounded-md bg-white p-4 shadow-lg md:max-w-xl'>
                 {/* <!-- Modal content --> */}
                 <AddWorkOut setIsModalOpen={setIsModalOpen} />
               </div>
@@ -65,12 +133,12 @@ const GetAllReport: React.FC = () => {
               <ReactLoading type='spokes' color='#000' />
             </div>
           ) : (
-            <div className='grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3'>
+            <div className='grid grid-cols-1 gap-5 pt-8 md:grid-cols-2 xl:grid-cols-3'>
               {/* Tampilkan kartu jika data sudah selesai di-fetch */}
               {workoutPlans.map((workoutPlan, index) => (
                 <Link href={`/workout/${workoutPlan.id}`} key={index}>
-                  <Card>
-                    <Image src={workoutPlan.fotoWO} alt={`Gambar ${workoutPlan.nama}`} width='500' height='300' priority={true} placeholder='blur' blurDataURL={rgbDataURL(237, 181, 6)} className='h-52 object-cover object-center' />
+                  <Card className='h-[26rem]'>
+                    <Image src={workoutPlan.fileURL} alt={`Gambar ${workoutPlan.nama}`} width='500' height='300' priority={true} placeholder='blur' blurDataURL={rgbDataURL(237, 181, 6)} className='h-52 object-cover object-center' />
                     <h4 className='text-center font-bold'>{workoutPlan.nama}</h4>
                     <p>Kategori : {workoutPlan.Kategori}</p>
                     <div className='line-clamp-2'>

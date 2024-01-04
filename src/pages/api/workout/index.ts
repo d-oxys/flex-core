@@ -1,6 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { IncomingMessage, ServerResponse } from 'http';
+import { ParamsDictionary } from 'express-serve-static-core';
 import { collection, addDoc, getDocs, query, where, limit, startAfter, orderBy, Query } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db } from '../../../lib/firebaseAdmin';
+import multer from 'multer';
+import path from 'path';
 
 type Data = {
   status: string;
@@ -9,26 +14,71 @@ type Data = {
   workoutPlans?: any[];
 };
 
+interface MulterRequest extends NextApiRequest {
+  file?: Express.Multer.File;
+}
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 1 * 1024 * 1024, // Maksimal 1 MB
+  },
+  fileFilter: function (req, file, cb) {
+    const filetypes = /jpeg|jpg|png/;
+    const mimetype = filetypes.test(file.mimetype);
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+
+    if (mimetype && extname) {
+      return cb(null, true);
+    }
+    cb(new Error('Hanya file dengan ekstensi .jpeg, .jpg, atau .png yang diperbolehkan.'));
+  },
+});
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (req.method === 'POST') {
-    const workoutData = req.body;
+    upload.single('image')(req as any, res as any, async (err: any) => {
+      if (err) {
+        return res.status(500).json({ status: 'error', message: err.message });
+      }
 
-    try {
-      // Menambahkan data latihan ke koleksi 'workouts' di Firestore
-      const docRef = await addDoc(collection(db, 'workouts'), workoutData);
+      const file = (req as MulterRequest).file;
 
-      res.status(200).json({
-        status: 'ok',
-        message: 'Workout plan submitted successfully!',
-        reportId: docRef.id,
-      });
-    } catch (e) {
-      console.error(e); // Menambahkan console log untuk mencetak detail kesalahan
-      res.status(500).json({
-        status: 'error',
-        message: 'Something went wrong',
-      });
-    }
+      if (!file) {
+        return res.status(400).json({ status: 'error', message: 'File tidak ada.' });
+      }
+
+      const fileRef = ref(getStorage(), 'workouts/' + file.originalname);
+
+      await uploadBytes(fileRef, file.buffer);
+
+      const fileURL = await getDownloadURL(fileRef);
+
+      const workoutData = JSON.parse((req as MulterRequest).body.workout);
+      workoutData.fileURL = fileURL;
+
+      try {
+        const docRef = await addDoc(collection(db, 'workouts'), workoutData);
+
+        res.status(200).json({
+          status: 'ok',
+          message: 'Workout plan and image submitted successfully!',
+          reportId: docRef.id,
+        });
+      } catch (e) {
+        console.error(e);
+        res.status(500).json({
+          status: 'error',
+          message: 'Something went wrong',
+        });
+      }
+    });
   } else if (req.method === 'GET') {
     const { q, l, skip } = req.query;
 
@@ -54,7 +104,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const workoutPlans: any[] = [];
       const querySnapshot = await getDocs(workoutPlansQuery);
       querySnapshot.forEach((doc) => {
-        // Menambahkan id ke data latihan
         const workoutPlan = doc.data();
         workoutPlan.id = doc.id;
         workoutPlans.push(workoutPlan);
@@ -66,14 +115,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         workoutPlans: workoutPlans,
       });
     } catch (e) {
-      console.error(e); // Menambahkan console log untuk mencetak detail kesalahan
+      console.error(e);
       res.status(500).json({
         status: 'error',
         message: 'Something went wrong',
       });
     }
   } else {
-    // Menangani permintaan selain POST dan GET
     res.setHeader('Allow', ['POST', 'GET']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
