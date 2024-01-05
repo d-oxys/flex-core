@@ -23,6 +23,7 @@ type AddWorkOutProps = {
 
 const AddWorkOut: React.FC<AddWorkOutProps> = ({ setIsModalOpen }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const [file, setFile] = useState<File | null>(null);
   const { search, limit, skip } = useSelector((state: RootState) => state.search);
   const [workout, setWorkout] = useState<WorkoutPlan>({
     nama: '',
@@ -35,6 +36,12 @@ const AddWorkOut: React.FC<AddWorkOutProps> = ({ setIsModalOpen }) => {
     tutorial: [],
   });
 
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setWorkout({ ...workout, [e.target.name]: e.target.value });
   };
@@ -46,18 +53,20 @@ const AddWorkOut: React.FC<AddWorkOutProps> = ({ setIsModalOpen }) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      const formData = new FormData();
+      if (file) {
+        formData.append('image', file);
+      }
+      formData.append('workout', JSON.stringify(workout));
+
       const response = await fetch('/api/workout', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(workout),
+        body: formData,
       });
       const data = await response.json();
       if (!response.ok) {
         throw new Error(data.message);
       }
-      console.log(data);
       toast.success(data.message); // Menggunakan pesan dari respons API
       setIsModalOpen(false);
       // Tambahkan baris berikut untuk memperbarui data setelah penambahan berhasil
@@ -106,17 +115,13 @@ const AddWorkOut: React.FC<AddWorkOutProps> = ({ setIsModalOpen }) => {
             </div>
 
             <div>
-              <label className='mb-2 block text-sm font-medium text-gray-900 dark:text-white' htmlFor='fotoWO'>
-                Foto WO:
+              <label className='mb-2 block text-sm font-medium text-gray-900 dark:text-white' htmlFor='file_input'>
+                Upload foto
               </label>
-              <input
-                className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400'
-                id='fotoWO'
-                name='fotoWO'
-                type='text'
-                onChange={handleChange}
-                value={workout.fotoWO}
-              />
+              <input className='block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none ' id='fotoWO' name='fotoWO' type='file' onChange={handleFileChange} />
+              <p className='mt-1 text-sm text-gray-500 dark:text-gray-300' id='file_input_help'>
+                PNG, JPG or jpeg (MAX 1MB).
+              </p>
             </div>
 
             <div>

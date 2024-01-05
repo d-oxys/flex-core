@@ -1,6 +1,6 @@
-// utils/firebaseConfig.ts
 import { initializeApp, FirebaseApp, getApps, getApp } from 'firebase/app';
 import { getFirestore, Firestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCOvRYVAS_COBsEZVfbDVQe2HCES3BJaGc',
@@ -14,13 +14,16 @@ const firebaseConfig = {
 
 let app: FirebaseApp;
 let db: Firestore;
+let storage;
 
 if (!getApps().length) {
   app = initializeApp(firebaseConfig);
   db = getFirestore(app);
+  storage = getStorage(app);
 } else {
   app = getApp();
   db = getFirestore(app);
+  storage = getStorage(app);
 }
 
-export { db };
+export { db, storage };

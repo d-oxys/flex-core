@@ -12,6 +12,7 @@ type WorkoutPlan = {
   energiYangdigunakan: string[];
   alat: string[];
   tutorial: string[];
+  fileURL: string;
 };
 
 // Action untuk mengambil data workout

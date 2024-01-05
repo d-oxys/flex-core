@@ -100,10 +100,8 @@ const RecipeDetailPage = () => {
                     </div>
 
                     <div className=''>
-                      <h2 className='font-bold'>Usia :</h2>
-                      <p>
-                        {recipe.Kategori} {recipe.Kategori != 'Semua' ? 'bulan' : 'usia'} {recipe.Kategori == '12' && 'ke atas'}
-                      </p>
+                      <h2 className='font-bold'>kategori :</h2>
+                      <p>{recipe.Kategori}</p>
                     </div>
                   </div>
 
