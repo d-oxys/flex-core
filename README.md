@@ -113,7 +113,7 @@ Teknologi yang digunakan :
       "nama": "Push Up",
       "energiYangdigunakan": ["200 kkal energi", "25 gram karbohidrat", "8 gram lemak", "7 gram protein"],
       "alat": ["Matras olahraga"],
-      "fotoWO": "https://via.placeholder.com/400",
+      "fileURL": "https://via.placeholder.com/400",
       "Kategori": "dada dan lengan"
     }
   ]
@@ -145,9 +145,47 @@ Teknologi yang digunakan :
       "nama": "Push Up",
       "energi Yang digunakan": ["200 kkal energi", "25 gram karbohidrat", "8 gram lemak", "7 gram protein"],
       "alat": ["Matras olahraga"],
-      "fotoWO": "https://via.placeholder.com/400",
+      "fileURL": "https://via.placeholder.com/400",
       "Kategori": "dada dan lengan"
     }
   ]
 }
 ```
+
+### Nutrition Plan
+
+#### Membuat Rencana Nutrisi
+
+- URL : /api/calculateCalories
+- Method : POST
+- Request Body:
+  - age as number
+  - weight as number
+  - height as number
+  - gender as string ('male' or 'female')
+  - activity as number
+  - goal as string ('deficit' or not 'deficit')
+  - mealsPerDay as number (default is 3)
+- Response:
+
+```json
+{
+  "calories": number,
+  "carbs": number,
+  "protein": number,
+  "fat": number,
+  "bmiCategory": string,
+  "advice": string,
+  "idealWeight": number,
+  "meals": [
+    {
+      "calories": number,
+      "carbs": number,
+      "protein": number,
+      "fat": number
+    }
+  ]
+}
+
+
+
