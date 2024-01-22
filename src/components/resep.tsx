@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Link from 'next/link';
 import { Button, Card } from 'flowbite-react';
 import { useMemo, useState } from 'react';

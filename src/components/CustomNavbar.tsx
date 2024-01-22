@@ -2,6 +2,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { NavLink } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 function Header() {
@@ -55,7 +56,7 @@ function Header() {
               <path stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M1 1h15M1 7h15M1 13h15' />
             </svg>
           </button>
-          <div className={`w-full md:block md:w-auto ${isNavbarOpen ? 'block' : 'hidden'} z-10`} id='navbar-default'>
+          <div className={`w-full md:block md:w-auto ${isNavbarOpen ? 'relative block' : 'hidden'} z-10`} id='navbar-default'>
             <ul className='mt-4 flex flex-col justify-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900'>
               <li>
                 <Link href='/' className='block rounded bg-blue-700 py-2 pl-3 pr-4 text-white dark:text-white md:bg-transparent md:p-0 md:text-blue-700 md:dark:text-blue-500' aria-current='page'>

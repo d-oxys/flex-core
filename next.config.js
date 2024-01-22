@@ -17,6 +17,31 @@ module.exports = {
         hostname: 'firebasestorage.googleapis.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.prenagen.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'blue.kumparan.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img-global.cpcdn.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'd1sag4ddilekf6.cloudfront.net',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.herstory.co.id',
+        pathname: '**',
+      },
     ],
   },
   // ...
