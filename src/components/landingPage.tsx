@@ -44,7 +44,7 @@ const Home = () => {
           </div>
 
           <div className='relative hidden items-center lg:flex lg:w-[50%]' data-aos='fade-left'>
-            <Image src='https://via.placeholder.com/500' alt='Hero' priority={true} fill sizes='(max-width: 500px) 0vw, (max-width: 800px) 30vw, (max-width: 1200px) 40vw, 50vw' className='relative h-auto' />
+            <Image src={DoctorImage} alt='Hero' priority={true} fill sizes='(max-width: 500px) 0vw, (max-width: 800px) 30vw, (max-width: 1200px) 40vw, 50vw' className='relative h-auto' />
           </div>
         </div>
       </div>
