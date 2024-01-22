@@ -34,12 +34,27 @@ const WorkoutPlanDetail = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const getRecommendations = async (kategori: string) => {
+  const getRecommendations = async (kategori: string, currentArticleName: string) => {
     try {
       const response = await fetch(`/api/workout?kategori=${kategori}`);
       const data = await response.json();
 
-      return data.workoutPlans.map((plan: WorkoutPlan) => ({
+      // Create an empty array to store unique workout plans
+      const uniquePlans: WorkoutPlan[] = [];
+
+      // Iterate over the workout plans
+      for (let plan of data.workoutPlans) {
+        // Check if the plan is already in the uniquePlans array, if it's the current article, or if its category doesn't match
+        if (!uniquePlans.find((uniquePlan) => uniquePlan.nama === plan.nama) && plan.nama !== currentArticleName && plan.Kategori === kategori) {
+          // If it's not, add it to the array
+          uniquePlans.push(plan);
+        }
+      }
+
+      // Get only the first 4 unique workout plans
+      const top4Plans = uniquePlans.slice(0, 4);
+
+      return top4Plans.map((plan: WorkoutPlan) => ({
         title: plan.nama,
         headline: plan.funFacts,
         id: plan.id,
@@ -51,8 +66,10 @@ const WorkoutPlanDetail = () => {
 
   useEffect(() => {
     if (workoutPlan) {
-      getRecommendations(workoutPlan.Kategori).then((recommendations: RecomendationArticles[]) => {
-        setRecommendedWorkout(recommendations);
+      getRecommendations(workoutPlan.Kategori, workoutPlan.nama).then((recommendations: RecomendationArticles[] | undefined) => {
+        if (recommendations) {
+          setRecommendedWorkout(recommendations);
+        }
       });
     }
   }, [workoutPlan]);
@@ -87,7 +104,7 @@ const WorkoutPlanDetail = () => {
             <Breadcrumb className='mb-6'>
               <Breadcrumb.Item>
                 <Link href='/resep' className='flex items-center gap-x-2 text-black'>
-                  <FaUtensils /> Resep
+                  <FaUtensils /> Workout
                 </Link>
               </Breadcrumb.Item>
 
