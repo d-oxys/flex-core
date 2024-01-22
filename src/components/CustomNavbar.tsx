@@ -2,17 +2,13 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { NavLink } from 'react-router-dom';
-import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 
 function Header() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const router = useRouter();
 
-  const isActive = (href: any) => router.pathname === href;
   useEffect(() => {
     const token = Cookies.get('token');
     setIsLoggedIn(!!token);
@@ -59,51 +55,41 @@ function Header() {
               <path stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M1 1h15M1 7h15M1 13h15' />
             </svg>
           </button>
-          <div className={`w-full md:block md:w-auto ${isNavbarOpen ? 'relative block' : 'hidden'} z-10`} id='navbar-default'>
+          <div className={`w-full md:block md:w-auto ${isNavbarOpen ? 'block' : 'hidden'} z-10`} id='navbar-default'>
             <ul className='mt-4 flex flex-col justify-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900'>
               <li>
-                <Link href='/'>
-                  <div className={`block rounded py-2 pl-3 pr-4 ${isActive('/') ? 'text-white md:text-blue-700' : 'text-gray-900 hover:bg-gray-100'} dark:text-white md:bg-transparent md:p-0  md:dark:text-blue-500`}>Home</div>
+                <Link href='/' className='block rounded bg-blue-700 py-2 pl-3 pr-4 text-white dark:text-white md:bg-transparent md:p-0 md:text-blue-700 md:dark:text-blue-500' aria-current='page'>
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href='/perhitungan'>
-                  <div
-                    className={`block rounded py-2 pl-3 pr-4 ${
-                      isActive('/perhitungan') ? 'text-white md:text-blue-700' : 'text-gray-900 hover:bg-gray-100'
-                    } dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500`}
-                  >
-                    Perhitungan
-                  </div>
+                <Link
+                  href='/perhitungan'
+                  className='block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500'
+                >
+                  Perhitungan
                 </Link>
               </li>
               <li>
-                <Link href='/resep'>
-                  <div
-                    className={`block rounded py-2 pl-3 pr-4 ${
-                      isActive('/resep') ? 'text-white md:text-blue-700' : 'text-gray-900 hover:bg-gray-100'
-                    } dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500`}
-                  >
-                    Resep
-                  </div>
+                <Link
+                  href='/resep'
+                  className='block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500'
+                >
+                  Resep
                 </Link>
               </li>
               {isLoggedIn ? (
                 <li>
-                  <Link href='/workout'>
-                    <div
-                      className={`block rounded py-2 pl-3 pr-4 ${
-                        isActive('/workout') ? 'text-white md:text-blue-700' : 'text-gray-900 hover:bg-gray-100'
-                      } dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500`}
-                    >
-                      Workout
-                    </div>
+                  <Link
+                    href='/workout'
+                    className='block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500'
+                  >
+                    Workout
                   </Link>
                 </li>
               ) : (
                 <li></li>
               )}
-
               <li className='block md:hidden'>
                 {isLoggedIn ? (
                   <button
