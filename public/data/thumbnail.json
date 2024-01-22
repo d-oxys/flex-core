@@ -1,0 +1,54 @@
+[
+  {
+    "Kategori": "lengan",
+    "WaktuLatihan": "1 jam",
+    "alat": ["Dumbbell", "Bench"],
+    "energiYangdigunakan": ["Sekitar 272 kalori"],
+    "fileURL": "https://firebasestorage.googleapis.com/v0/b/flex-core-bf9f0.appspot.com/o/workouts%2FGenshinlab-Dr-Ratio-HSR.jpg?alt=media&token=f7cd21f4-2243-406c-a0fb-a8168f295f1e",
+    "fotoWO": "",
+    "funFacts": "Dr. Ratio adalah karakter dari Honkai Star Rail yang dikenal sebagai salah satu unit paling kuat dalam hal menimbulkan kerusakan pada target tunggal. Dia adalah anggota dari guild Intelligentsia dan dikenal sebagai karakter yang jujur dan berpusat pada diri sendiri.",
+    "nama": "Cara mendapatkan bentuk tangan seperti Dr. Ratio",
+    "tutorial": ["Lateral Raises 3x12 reps", "rear delt 3x15 reps", "overhead press extension 3x12 reps", "tricep kickback 3x12 reps", "dumbell curl 3x12 reps", "hammer Curl 3x12 reps", "lakukan latihan di atas setidaknya 2 kali seminggu"],
+    "id": "ocQKBz9CZM2CvgKVqTSd"
+  },
+  {
+    "Kategori": "kaki",
+    "WaktuLatihan": "1 jam",
+    "alat": ["Resistance Band"],
+    "energiYangdigunakan": ["Sekitar 350-700 kalori"],
+    "fileURL": "https://firebasestorage.googleapis.com/v0/b/flex-core-bf9f0.appspot.com/o/workouts%2Frumi-usagiyama-rabbit-hero-mirko-miruko-bnha-mha-my-hero-academia-arteasywars-transparent.png?alt=media&token=0078c96b-1fef-4824-b662-6741955c3f51",
+    "fotoWO": "",
+    "funFacts": "Mirko adalah karakter dari Boku no Hero Academia yang dikenal karena kekuatan dan kecepatan kakinya yang luar biasa. Dia adalah Pro Hero peringkat 5 dan merupakan Pro Hero wanita terkuat.",
+    "nama": "Cara mendapatkan kaki yang kuat seperti Mirko",
+    "tutorial": ["Squat 3x12 reps", "Lunges 3x15 reps", "Leg extension 3x12 reps", "Prone leg curl 3x12 reps", "Glute bridge 3x12 reps", "Lakukan latihan di atas setidaknya 2 kali seminggu"],
+    "id": "OjJhfZ06yZAB1QH6n6yb"
+  },
+  {
+    "Kategori": "lengan",
+    "WaktuLatihan": "1 jam",
+    "alat": ["Resistance Band"],
+    "energiYangdigunakan": ["Sekitar 250 kalori"],
+    "fileURL": "https://firebasestorage.googleapis.com/v0/b/flex-core-bf9f0.appspot.com/o/workouts%2Fhammer-curl-1615914024.jpeg?alt=media&token=c5c7b316-fb6d-4c3d-a950-e327b5bc591b",
+    "fotoWO": "",
+    "funFacts": "Latihan dengan Resistance Band sangat baik untuk fleksibilitas dan kekuatan otot.",
+    "nama": "Resistance Band Workout",
+    "tutorial": ["Berdiri tegak dengan resistance band di bawah kaki.", "Tarik resistance band ke atas dengan kedua tangan.", "Turunkan tangan kembali ke posisi awal.", "Ulangi gerakan ini sebanyak 10-15 kali."],
+    "id": "ixIWEY1DmfmlIdMmX6jX"
+  },
+  {
+    "Kategori": "kaki",
+    "WaktuLatihan": "30 menit",
+    "alat": ["Barbell"],
+    "energiYangdigunakan": ["Sekitar 150 kalori"],
+    "fileURL": "https://firebasestorage.googleapis.com/v0/b/flex-core-bf9f0.appspot.com/o/workouts%2Fbarbell-squat-resized-FIXED-2.png?alt=media&token=93bac24f-98aa-4778-929f-c71fa18e2fc1",
+    "fotoWO": "",
+    "funFacts": "Barbell Squat membantu dalam membangun otot kaki dan glute.",
+    "nama": "Barbell Squat",
+    "tutorial": [
+      "Berdiri tegak dengan barbell di kedua tangan.",
+      "Turunkan tubuh Anda seolah-olah Anda sedang duduk di kursi, menjaga berat badan Anda di tumit Anda, lalu dorong diri Anda kembali ke posisi awal.",
+      "Ulangi gerakan ini sebanyak 10-15 kali."
+    ],
+    "id": "DBIvcyrGvASLYmDQnTWh"
+  }
+]

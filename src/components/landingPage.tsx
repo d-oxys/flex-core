@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Aos from 'aos';
 import DoctorImage from '../../public/images/dokter-min.png';
-import ArticleJson from '../../public/data/artikel.json';
+import ArticleJson from '../../public/data/thumbnail.json';
 
 import TncLogo from '../../public/images/tnc_logo.png';
 import 'aos/dist/aos.css';
@@ -44,7 +44,7 @@ const Home = () => {
           </div>
 
           <div className='relative hidden items-center lg:flex lg:w-[50%]' data-aos='fade-left'>
-            <Image src='https://via.placeholder.com/500' alt='Hero' priority={true} fill sizes='(max-width: 500px) 0vw, (max-width: 800px) 30vw, (max-width: 1200px) 40vw, 50vw' className='relative h-auto' />
+            <Image src={DoctorImage} alt='Hero' priority={true} fill sizes='(max-width: 500px) 0vw, (max-width: 800px) 30vw, (max-width: 1200px) 40vw, 50vw' className='relative h-auto' />
           </div>
         </div>
       </div>
@@ -61,30 +61,29 @@ const Home = () => {
           </div>
           <div className='mt-8 grid grid-cols-1 gap-y-5 md:grid-cols-2 md:gap-x-12'>
             <div className='main'>
-              <Link href={`/artikel/${ArticleJson[0].title}`}>
+              <Link href='/workout/ocQKBz9CZM2CvgKVqTSd'>
                 <Card className='h-full border-2 border-gray-200 p-4'>
                   <div className='relative h-[250px] w-full sm:h-[300px] lg:h-[350px] xl:h-[400px]'>
-                    <Image src={ArticleJson[0].imageUrl} alt='gambar artikel' fill className='object-cover' sizes='(max-width: 768px) 40vw, (max-width: 1200px) 50vw, 60vw' />
+                    <Image src={ArticleJson[0].fileURL} alt='gambar artikel' fill className='object-cover' sizes='(max-width: 768px) 40vw, (max-width: 1200px) 50vw, 60vw' />
                   </div>
 
-                  <h3 className='hover:text-primary-2 line-clamp-2 text-xl font-bold leading-snug duration-500'>{ArticleJson[0].title}</h3>
-                  <p className='text-primary-3 line-clamp-3 text-sm'>{ArticleJson[0].headline}</p>
+                  <h3 className='hover:text-primary-2 line-clamp-2 text-xl font-bold leading-snug duration-500'>{ArticleJson[0].nama}</h3>
+                  <p className='text-primary-3 line-clamp-3 text-sm'>{ArticleJson[0].funFacts}</p>
                 </Card>
               </Link>
             </div>
-
             <div className='aside flex flex-col space-y-4'>
               {articles.map((article, k) => (
-                <Link href={`/artikel/${article.title}`} key={k}>
+                <Link href={`/workout/${article.id}`} key={k}>
                   <Card className='border-2 border-gray-200 p-4'>
                     <div className='flex flex-col md:flex-row md:space-x-3'>
                       <div className='relative h-[250px] w-full bg-red-300 md:h-[130px] md:w-[40%] xl:h-[150px]'>
-                        <Image src={article.imageUrl} alt='gambar artikel' sizes='(max-width: 768px) 40vw, (max-width: 1200px) 50vw, 60vw' fill className='object-cover' />
+                        <Image src={article.fileURL} alt='gambar artikel' sizes='(max-width: 768px) 40vw, (max-width: 1200px) 50vw, 60vw' fill className='object-cover' />
                       </div>
 
                       <div className='mt-5 md:mt-0 md:w-[60%]'>
-                        <h3 className='hover:text-primary-2 line-clamp-2 text-xl font-bold leading-snug duration-500'>{article.title}</h3>
-                        <p className='mt-4 line-clamp-3 text-sm text-[#637381]'>{article.headline}</p>
+                        <h3 className='hover:text-primary-2 line-clamp-2 text-xl font-bold leading-snug duration-500'>{article.nama}</h3>
+                        <p className='mt-4 line-clamp-3 text-sm text-[#637381]'>{article.funFacts}</p>
                       </div>
                     </div>
                   </Card>

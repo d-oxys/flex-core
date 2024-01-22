@@ -26,6 +26,7 @@ const GetAllReport: React.FC = () => {
   const debouncedSearchTerm = useDebounce(search, 500);
   const [kategori, setKategori] = useState<string[]>([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownOpenLimit, setDropdownOpenLimit] = useState(false);
 
   useEffect(() => {
     const fetchKategori = async () => {
@@ -50,71 +51,141 @@ const GetAllReport: React.FC = () => {
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+
+  const toggleDropdownLimit = () => {
+    setDropdownOpenLimit((prevState) => !prevState);
+  };
+
   return (
     <Layout>
       <ToastContainer />
       <div className='container m-auto flex min-h-screen flex-col space-y-8 px-4 py-4 capitalize lg:px-12 xl:px-24'>
         <div className='pt-6 text-center'>
-          <h1 className='text-base font-bold text-[#3056D3]'>Refrensi Resep Untuk Memenuhi Kebutuhan Kalori</h1>
+          <h1 className='text-base font-bold text-[#3056D3]'>Refrensi Latihan Untuk Memenuhi Kebutuhan Kalori</h1>
           <h2 className='mb-3 mt-1 text-2xl font-bold md:text-3xl'>Lorem ipsum dolor sit. </h2>
           <p className='mx-auto text-sm text-[#637381] md:w-3/4 md:text-base xl:w-1/2'> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt adipisci beatae eligendi quidem quisquam.</p>
         </div>
         <div>
-          <div className='flex items-center justify-between'>
-            <div>
-              <button
-                onClick={toggleDropdown}
-                id='dropdownDefaultButton'
-                data-dropdown-toggle='dropdown'
-                className='inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-                type='button'
-              >
-                Pilih Kategori
-                <svg className='ms-3 h-2.5 w-2.5' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 10 6'>
-                  <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m1 1 4 4 4-4' />
-                </svg>
-              </button>
-              <div id='dropdown' className={`inline-flex ${dropdownOpen ? '' : 'hidden'} w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700`}>
-                <ul className='py-2 text-sm text-gray-700 dark:text-gray-200' aria-labelledby='dropdownDefaultButton'>
-                  <li>
-                    <a
-                      onClick={() => {
-                        dispatch(setSearch(''));
-                        toggleDropdown();
-                      }}
-                      href='#'
-                      className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                    >
-                      semua
-                    </a>
-                  </li>
-                  {kategori.map((kat, index) => (
-                    <li key={index}>
+          <div className='grid grid-cols-2 justify-center gap-3 md:flex md:flex-row md:justify-between md:gap-0'>
+            <div className='md:flex md:flex-row md:space-x-4'>
+              <div className='md:relative'>
+                <button
+                  onClick={toggleDropdown}
+                  id='dropdownDefaultButton'
+                  data-dropdown-toggle='dropdown'
+                  className='inline-flex h-10 w-36 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:h-12 md:w-40 md:text-sm'
+                  type='button'
+                >
+                  Pilih Kategori
+                  <svg className='ms-3 h-2.5 w-2.5' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 10 6'>
+                    <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m1 1 4 4 4-4' />
+                  </svg>
+                </button>
+                <div id='dropdown' className={`absolute left-0 mt-2 w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700 ${dropdownOpen ? '' : 'hidden'}`}>
+                  <ul className='py-2 text-sm text-gray-700 dark:text-gray-200' aria-labelledby='dropdownDefaultButton'>
+                    <li>
                       <a
                         onClick={() => {
-                          dispatch(setSearch(kat));
+                          dispatch(setSearch(''));
                           toggleDropdown();
                         }}
                         href='#'
                         className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
                       >
-                        {kat}
+                        semua
+                      </a>
+                    </li>
+                    {kategori.map((kat, index) => (
+                      <li key={index}>
+                        <a
+                          onClick={() => {
+                            dispatch(setSearch(kat));
+                            toggleDropdown();
+                          }}
+                          href='#'
+                          className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
+                        >
+                          {kat}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className='relative hidden md:flex'>
+                <button
+                  onClick={toggleDropdownLimit}
+                  id='dropdownDefaultButton'
+                  data-dropdown-toggle='dropdown'
+                  className='inline-flex h-10 w-36 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:h-12 md:w-40 md:text-sm'
+                  type='button'
+                >
+                  Pilih Limit
+                  <svg className='ms-3 h-2.5 w-2.5' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 10 6'>
+                    <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m1 1 4 4 4-4' />
+                  </svg>
+                </button>
+                <div id='dropdown' className={`absolute left-0 mt-2 w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700 ${dropdownOpenLimit ? '' : 'hidden'}`}>
+                  <ul className='py-2 text-sm text-gray-700 dark:text-gray-200' aria-labelledby='dropdownDefaultButton'>
+                    {[5, 10, 20].map((value, index) => (
+                      <li key={index}>
+                        <a
+                          onClick={() => {
+                            dispatch(setLimit(value));
+                            toggleDropdownLimit();
+                          }}
+                          href='#'
+                          className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
+                        >
+                          {value}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className='relative md:hidden'>
+              <button
+                onClick={toggleDropdownLimit}
+                id='dropdownDefaultButton'
+                data-dropdown-toggle='dropdown'
+                className='inline-flex h-10 w-36 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:h-12 md:w-40 md:text-sm'
+                type='button'
+              >
+                Pilih Limit
+                <svg className='ms-3 h-2.5 w-2.5' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 10 6'>
+                  <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m1 1 4 4 4-4' />
+                </svg>
+              </button>
+              <div id='dropdown' className={`absolute left-0 mt-2 w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700 ${dropdownOpenLimit ? '' : 'hidden'}`}>
+                <ul className='py-2 text-sm text-gray-700 dark:text-gray-200' aria-labelledby='dropdownDefaultButton'>
+                  {[5, 10, 20].map((value, index) => (
+                    <li key={index}>
+                      <a
+                        onClick={() => {
+                          dispatch(setLimit(value));
+                          toggleDropdownLimit();
+                        }}
+                        href='#'
+                        className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
+                      >
+                        {value}
                       </a>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
-
-            <input type='number' value={limit} onChange={(e) => dispatch(setLimit(Number(e.target.value)))} placeholder='Limit' />
-
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className='block rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-              type='button'
-            >
-              Toggle modal
-            </button>
+            <div className='md:relative'>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className='inline-flex h-10 w-36 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:h-12 md:w-40 md:text-sm'
+                type='button'
+              >
+                Tambah Artikel
+              </button>
+            </div>
           </div>
 
           {/* <!-- Main modal --> */}
@@ -129,7 +200,7 @@ const GetAllReport: React.FC = () => {
 
           {isLoading ? (
             // Tampilkan komponen loading jika data sedang di-fetch
-            <div className='flex h-16 items-center justify-center'>
+            <div className='flex h-screen items-center justify-center'>
               <ReactLoading type='spokes' color='#000' />
             </div>
           ) : (
@@ -141,7 +212,7 @@ const GetAllReport: React.FC = () => {
                     <Image src={workoutPlan.fileURL} alt={`Gambar ${workoutPlan.nama}`} width='500' height='300' priority={true} placeholder='blur' blurDataURL={rgbDataURL(237, 181, 6)} className='h-52 object-cover object-center' />
                     <h4 className='text-center font-bold'>{workoutPlan.nama}</h4>
                     <p>Kategori : {workoutPlan.Kategori}</p>
-                    <div className='line-clamp-2'>
+                    <div className='my-2 line-clamp-2'>
                       <p>{workoutPlan.funFacts}</p>
                     </div>
                   </Card>
