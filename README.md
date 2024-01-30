@@ -14,7 +14,7 @@ Teknologi yang digunakan :
 3. Install Package Yang Di Butuhkan : npm install
 4. Jalankan Lokal Server : npm run dev
    > server berjalan di port 3000, pastikan port tidak terpakai
-   > server juga berjalan di https://flex-core.vercel.app/api
+5. server juga berjalan di https://flex-core.vercel.app/api
 
 ## API
 
