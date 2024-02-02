@@ -40,10 +40,10 @@ function Header() {
       <nav className='border-gray-200 bg-white dark:bg-gray-900'>
         <div className='mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4'>
           <div className='flex w-1/4 justify-start'>
-            <a href='/tentang' className='flex items-center'>
+            <Link href='/tentang' className='flex items-center'>
               <Image src={DoctorImage} className='mr-3' width={50} height={50} alt='Flowbite Logo' />
               <span className='self-center whitespace-nowrap text-2xl font-semibold dark:text-white'>FlexForce</span>
-            </a>
+            </Link>
           </div>
           <button
             onClick={toggleNavbar}
