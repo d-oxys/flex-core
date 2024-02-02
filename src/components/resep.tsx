@@ -39,9 +39,12 @@ const RecipeIndexPage = () => {
   return (
     <div className='container m-auto flex min-h-screen flex-col space-y-8 px-4 py-4 capitalize lg:px-12 xl:px-24'>
       <div className='pt-6 text-center'>
-        <h1 className='text-base font-bold text-[#3056D3]'>Refrensi Resep Untuk Memenuhi Kebutuhan Kalori</h1>
-        <h2 className='mb-3 mt-1 text-2xl font-bold md:text-3xl'>Lorem ipsum dolor sit. </h2>
-        <p className='mx-auto text-sm text-[#637381] md:w-3/4 md:text-base xl:w-1/2'> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt adipisci beatae eligendi quidem quisquam.</p>
+        <h1 className='text-base font-bold text-[#3056D3]'>Refrensi Resep</h1>
+        <h2 className='mb-3 mt-1 text-2xl font-bold md:text-3xl'>Panduan Nutrisi Anda. </h2>
+        <p className='mx-auto text-sm text-[#637381] md:w-3/4 md:text-base xl:w-1/2'>
+          {' '}
+          Temukan resep yang lezat dan sehat yang dirancang khusus untuk memenuhi kebutuhan kalori Anda. Dengan berbagai pilihan, Anda bisa menikmati makanan sambil tetap menjaga keseimbangan nutrisi.
+        </p>
       </div>
 
       <div className='grid grid-cols-2 items-center justify-center gap-3 md:grid-cols-3'>

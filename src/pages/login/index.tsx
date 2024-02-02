@@ -4,7 +4,7 @@ import Layout from '@/components/rootLayout';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import ReactLoading from 'react-loading';
-import '../../app/globals.css';
+import '@/app/globals.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import recipeJson from '../../../public/data/resep.json';
 import Link from 'next/link';
 import { Breadcrumb, Button } from 'flowbite-react';
 import { FaUtensils } from 'react-icons/fa';

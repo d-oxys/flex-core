@@ -61,10 +61,14 @@ const GetAllReport: React.FC = () => {
       <ToastContainer />
       <div className='container m-auto flex min-h-screen flex-col space-y-8 px-4 py-4 capitalize lg:px-12 xl:px-24'>
         <div className='pt-6 text-center'>
-          <h1 className='text-base font-bold text-[#3056D3]'>Refrensi Latihan Untuk Memenuhi Kebutuhan Kalori</h1>
-          <h2 className='mb-3 mt-1 text-2xl font-bold md:text-3xl'>Lorem ipsum dolor sit. </h2>
-          <p className='mx-auto text-sm text-[#637381] md:w-3/4 md:text-base xl:w-1/2'> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt adipisci beatae eligendi quidem quisquam.</p>
+          <h1 className='text-base font-bold text-[#3056D3]'>Refrensi Latihan Workout</h1>
+          <h2 className='mb-3 mt-1 text-2xl font-bold md:text-3xl'>Temukan Kekuatan Anda. </h2>
+          <p className='mx-auto text-sm text-[#637381] md:w-3/4 md:text-base xl:w-1/2'>
+            {' '}
+            Mulailah perjalanan kebugaran Anda dengan kami. Dengan berbagai latihan dan komunitas yang mendukung, kami siap membantu Anda mencapai tujuan kebugaran Anda.
+          </p>
         </div>
+
         <div>
           <div className='grid grid-cols-2 justify-center gap-3 md:flex md:flex-row md:justify-between md:gap-0'>
             <div className='md:flex md:flex-row md:space-x-4'>
@@ -112,7 +116,7 @@ const GetAllReport: React.FC = () => {
                   </ul>
                 </div>
               </div>
-              <div className='relative hidden md:flex'>
+              <div className='relative hidden md:relative md:flex'>
                 <button
                   onClick={toggleDropdownLimit}
                   id='dropdownDefaultButton'
@@ -125,7 +129,7 @@ const GetAllReport: React.FC = () => {
                     <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m1 1 4 4 4-4' />
                   </svg>
                 </button>
-                <div id='dropdown' className={`absolute left-0 mt-2 w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700 ${dropdownOpenLimit ? '' : 'hidden'}`}>
+                <div id='dropdown' className={`absolute left-0 mt-2 w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700 md:mt-14 ${dropdownOpenLimit ? '' : 'hidden'}`}>
                   <ul className='py-2 text-sm text-gray-700 dark:text-gray-200' aria-labelledby='dropdownDefaultButton'>
                     {[5, 10, 20].map((value, index) => (
                       <li key={index}>
