@@ -1,9 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { IncomingMessage, ServerResponse } from 'http';
-import { ParamsDictionary } from 'express-serve-static-core';
 import { collection, addDoc, getDocs, query, where, limit, startAfter, orderBy, Query } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { db } from '../../../lib/firebaseAdmin';
+import { db } from '@/lib/firebaseAdmin';
 import multer from 'multer';
 import path from 'path';
 

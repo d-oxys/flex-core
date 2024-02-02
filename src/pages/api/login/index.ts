@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { collection, doc, getDoc } from 'firebase/firestore';
-import { db } from '../../../lib/firebaseAdmin';
+import { db } from '@/lib/firebaseAdmin';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 

@@ -1,5 +1,15 @@
-import HomePage from '../pages/home';
+import Layout from '@/components/rootLayout';
+import LandingPage from '@/components/landingPage';
+import React from 'react';
 
-export default function Home() {
-  return <HomePage />;
-}
+const Home = () => {
+  return (
+    <Layout>
+      <div className='bg-white'>
+        <LandingPage />
+      </div>
+    </Layout>
+  );
+};
+
+export default Home;
