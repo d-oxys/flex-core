@@ -54,43 +54,6 @@ const Home = () => {
         </div>
       </div>
 
-      <section className='mt-10'>
-        <div>
-          <motion.div
-            className='flex flex-col items-center text-center'
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{
-              ease: 'easeInOut',
-              duration: 0.5,
-            }}
-          >
-            <h1 className='px-4 text-xl font-semibold sm:text-2xl '>Kenapa Mengunakan FlexForce?</h1>
-            <div className='bg-primary mt-2 h-[2px] w-28'></div>
-          </motion.div>
-          <div className='mx-auto mb-16 mt-14 grid max-w-6xl grid-cols-1 gap-4 px-4 md:grid-cols-2 md:gap-6'>
-            {benefitUse.map(({ name, description }, index) => (
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  ease: 'easeInOut',
-                  duration: 0.5,
-                  y: { duration: 0.5 },
-                }}
-                className='rounded-md border bg-white p-5 shadow-sm'
-                key={name}
-              >
-                <h2 className='text-xl font-semibold'>{name}</h2>
-                <p className='mt-3 text-slate-600'>{description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <article className='container mx-auto mb-10 mt-6 px-6 lg:px-12 xl:px-24'>
         <div className='' data-aos='fade-up'>
           <div className='text-center'>
@@ -135,6 +98,43 @@ const Home = () => {
           </div>
         </div>
       </article>
+
+      <section className='mt-10'>
+        <div>
+          <motion.div
+            className='flex flex-col items-center text-center'
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              ease: 'easeInOut',
+              duration: 0.5,
+            }}
+          >
+            <h1 className='px-4 text-xl font-semibold sm:text-2xl '>Kenapa Mengunakan FlexForce?</h1>
+            <div className='bg-primary mt-2 h-[2px] w-28'></div>
+          </motion.div>
+          <div className='mx-auto mb-16 mt-14 grid max-w-6xl grid-cols-1 gap-4 px-4 md:grid-cols-2 md:gap-6'>
+            {benefitUse.map(({ name, description }, index) => (
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  ease: 'easeInOut',
+                  duration: 0.5,
+                  y: { duration: 0.5 },
+                }}
+                className='rounded-md border bg-white p-5 shadow-sm'
+                key={name}
+              >
+                <h2 className='text-xl font-semibold'>{name}</h2>
+                <p className='mt-3 text-slate-600'>{description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section>
         <div className='mt-16 flex flex-col items-center text-center'>

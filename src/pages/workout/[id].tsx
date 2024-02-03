@@ -160,14 +160,13 @@ const WorkoutPlanDetail = () => {
               <hr className='border-1 border-gray-300' />
 
               <h1 className='pt-5 text-3xl font-bold'>
-                Energi Facts <span className='text-sm font-normal'>(per latihan)</span>
+                Energi Facts <span className='text-sm font-normal'>(Energi yang terbakar ketika latihan)</span>
               </h1>
 
               <div className='grid grid-cols-3 gap-5 md:grid-cols-4 md:gap-6 lg:gap-8'>
                 {workoutPlan?.energiYangdigunakan.map((energiYangdigunakan, k) => (
                   <div key={k}>
-                    <h3 className='mb-1 font-bold'>{energiYangdigunakan[0]}</h3>
-                    <p>{energiYangdigunakan[1]}</p>
+                    <p>{energiYangdigunakan}</p>
                   </div>
                 ))}
               </div>
