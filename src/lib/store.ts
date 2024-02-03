@@ -2,11 +2,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import workoutReducer from './workoutSlice';
 import searchReducer from './searchSlice';
+import pathReducer from './pathSlice';
 
 export const store = configureStore({
   reducer: {
     workouts: workoutReducer,
     search: searchReducer,
+    path: pathReducer,
   },
 });
 
