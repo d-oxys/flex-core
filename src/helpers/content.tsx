@@ -12,17 +12,17 @@ export const teams = [
       instagram: 'https://www.instagram.com/m.ichsannr/',
     },
   },
-  {
-    name: 'Asep Sutrisna Suhada Putra',
-    role: 'Backend & Frontend Developer',
-    univesity: 'Sekolah Tinggi Teknologi Bandung',
-    imageUrl: '/images/axsev.jpg',
-    socialMedia: {
-      linkedin: 'https://www.linkedin.com/in/asep-sutrisna-suhada-putra/',
-      github: 'https://github.com/axsevSutrisna',
-      instagram: 'https://www.instagram.com/asut30_/',
-    },
-  },
+  // {
+  //   name: 'Asep Sutrisna Suhada Putra',
+  //   role: 'Backend & Frontend Developer',
+  //   univesity: 'Sekolah Tinggi Teknologi Bandung',
+  //   imageUrl: '/images/axsev.jpg',
+  //   socialMedia: {
+  //     linkedin: 'https://www.linkedin.com/in/asep-sutrisna-suhada-putra/',
+  //     github: 'https://github.com/axsevSutrisna',
+  //     instagram: 'https://www.instagram.com/asut30_/',
+  //   },
+  // },
 ];
 
 export const benefitUse = [
