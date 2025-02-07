@@ -1,10 +1,8 @@
 name: CI Workflow
 
+# Menentukan kapan workflow ini akan dijalankan
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 
@@ -20,24 +18,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "20"
-          cache: "npm"
-
-      - name: Set PowerShell Execution Policy
-        shell: powershell
-        run: |
-          Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
 
       - name: Install dependencies
-        run: |
-          npm config set legacy-peer-deps true
-          npm ci
+        run: npm install
 
       - name: Build project
         run: npm run build
-
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
